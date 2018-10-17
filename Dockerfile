@@ -17,6 +17,9 @@ RUN apt-get update \
       libwebsockets-dev \
       pkg-config \
       vim-common \
+      vim \
+      emacs-nox \
+      nano \
     && git clone --depth=1 https://github.com/tsl0922/ttyd.git /tmp/ttyd \
     && cd /tmp/ttyd && mkdir build && cd build \
     && cmake -DCMAKE_BUILD_TYPE=RELEASE .. \
