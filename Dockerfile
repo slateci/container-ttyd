@@ -13,28 +13,32 @@ RUN apt-get update \
       libjson-c-dev \
       libssl1.0.0 \
       libssl-dev \
-      libwebsockets7 \
-      libwebsockets-dev \
       pkg-config \
       vim-common \
       vim \
       emacs-nox \
       nano \
-    && git clone --depth=1 https://github.com/tsl0922/ttyd.git /tmp/ttyd \
-    && cd /tmp/ttyd && mkdir build && cd build \
+    && git clone --depth=1 https://libwebsockets.org/repo/libwebsockets /tmp/libwebsockets \
+    && cd /tmp/libwebsockets && mkdir build && cd build \
     && cmake -DCMAKE_BUILD_TYPE=RELEASE .. \
     && make \
     && make install \
+    && git clone --depth=1 https://github.com/slateci/slate-ttyd.git /tmp/ttyd \
+    && cd /tmp/ttyd && rm -rf build && mkdir build && cd build \
+    && cmake -DCMAKE_BUILD_TYPE=RELEASE .. \
+    && make \
+    && make install \
+    && chmod 6755 /usr/local/bin/ttyd \
     && apt-get remove -y --purge \
         cmake \
         g++ \
-        libwebsockets-dev \
         libjson-c-dev \
         libssl-dev \
         pkg-config \
     && apt-get purge -y \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/libwebsockets \
     && rm -rf /tmp/ttyd
 
 # SLATE customizations for demo
