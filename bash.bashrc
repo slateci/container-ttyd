@@ -17,6 +17,4 @@ fi
 
 chmod 600 $HOME/.slate/token
 
-
-
-PS1="[\A] \H:\w $ "
+PS1="\H:\w $ "
