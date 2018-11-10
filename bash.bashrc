@@ -1,7 +1,13 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-echo "Welcome to the SLATE interactive sandbox!"
+echo "   ______   ___ __________
+  / __/ /  / _ /_  __/ __/
+ _\ \/ /__/ __ |/ / / _/  
+/___/____/_/ |_/_/ /___/ "
+
+echo "Welcome to the interactive SLATE sandbox!"
+echo "Try \"slate help\" to get started!"
 
 cd $HOME
 
