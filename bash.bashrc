@@ -6,8 +6,12 @@ echo "   ______   ___ __________
  _\ \/ /__/ __ |/ / / _/  
 /___/____/_/ |_/_/ /___/ "
 
+echo
+
 echo "Welcome to the interactive SLATE sandbox!"
-echo "Try \"slate help\" to get started!"
+echo
+
+echo "Try \"slate --help\" to get started!"
 
 cd $HOME
 
