@@ -1,6 +1,5 @@
 FROM ubuntu:16.04
 LABEL maintainer "Lincoln Bryant - lincolnb@uchicago.edu"
-LABEL maintainer "Shuanglei Tao - tsl0922@gmail.com"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
