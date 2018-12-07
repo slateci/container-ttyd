@@ -17,7 +17,7 @@ RUN apt-get update \
       vim \
       emacs-nox \
       nano \
-    && git clone --depth=1 https://github.com/warmcat/libwebsockets /tmp/libwebsockets \
+    && git clone --depth=1 https://github.com/warmcat/libwebsockets -b v3.1.0 /tmp/libwebsockets \
     && cd /tmp/libwebsockets && mkdir build && cd build \
     && cmake -DCMAKE_BUILD_TYPE=RELEASE .. \
     && make \
