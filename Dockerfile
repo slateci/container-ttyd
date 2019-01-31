@@ -65,3 +65,4 @@ USER slate
 ENTRYPOINT ["ttyd"]
 
 CMD ["bash"]
+
