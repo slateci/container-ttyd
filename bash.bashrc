@@ -27,4 +27,9 @@ fi
 
 chmod 600 $HOME/.slate/token
 
+slate completion bash > $HOME/.slate/completion.bash
+if [ -f "$HOME/.slate/completion.bash" ]; then
+  . $HOME/.slate/completion.bash
+fi
+
 PS1="\H:\w $ "
