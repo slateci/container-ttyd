@@ -57,7 +57,6 @@ RUN groupadd -g 999 slate && \
 
 RUN rm -f /usr/bin/systemd-* /usr/bin/passwd /usr/bin/perl* /usr/bin/whereis /usr/bin/which /usr/bin/wall /usr/bin/vmstat /usr/bin/timedatectl /usr/bin/taskset /bin/system* /bin/*ctl /bin/uname /bin/dmesg /usr/bin/apt-* /usr/bin/apt /usr/bin/dpkg /usr/bin/dpkg-* /usr/bin/slabtop
           
-
 EXPOSE 7681
 
 USER slate
