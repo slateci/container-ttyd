@@ -1,47 +1,30 @@
-FROM ubuntu:16.04
+FROM tsl0922/musl-cross
+RUN git clone --depth=1 https://github.com/slateci/slate-ttyd.git /ttyd \
+    && cd /ttyd && ./scripts/cross-build.sh x86_64
+
+FROM ubuntu:18.04
 LABEL maintainer "Lincoln Bryant - lincolnb@uchicago.edu"
+
+COPY --from=0 /ttyd/build/ttyd /usr/local/bin/ttyd
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
       ca-certificates \
-      cmake \
       curl \
-      g++ \
       git \
-      libjson-c2 \
-      libjson-c-dev \
+      libjson-c3 \
       libssl1.0.0 \
-      libssl-dev \
-      pkg-config \
       vim-common \
       vim \
       emacs-nox \
       nano \
-    && git clone --depth=1 https://github.com/warmcat/libwebsockets -b v3.1.0 /tmp/libwebsockets \
-    && cd /tmp/libwebsockets && mkdir build && cd build \
-    && cmake -DCMAKE_BUILD_TYPE=RELEASE .. \
-    && make \
-    && make install \
-    && git clone --depth=1 https://github.com/slateci/slate-ttyd.git /tmp/ttyd \
-    && cd /tmp/ttyd && rm -rf build && mkdir build && cd build \
-    && cmake -DCMAKE_BUILD_TYPE=RELEASE .. \
-    && make \
-    && make install \
     && chmod 6755 /usr/local/bin/ttyd \
-    && apt-get remove -y --purge \
-        cmake \
-        g++ \
-        libjson-c-dev \
-        libssl-dev \
-        pkg-config \
     && apt-get purge -y \
     && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/libwebsockets \
-    && rm -rf /tmp/ttyd
+    && rm -rf /var/lib/apt/lists/* 
 
 # SLATE customizations for demo
-RUN curl -O http://jenkins.slateci.io/artifacts/slate-linux.tar.gz && \
+RUN curl -O https://jenkins.slateci.io/artifacts/client/slate-linux.tar.gz && \
     tar -xvzf slate-linux.tar.gz && \
     mv slate /usr/local/bin 
 
